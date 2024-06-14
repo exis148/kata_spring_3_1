@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <style>
+        .action-button {
+            margin-top: 10px;
+        }
+        .edit-button, .delete-button, .create-button {
+            padding: 5px 10px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .edit-button {
+            background-color: #4CAF50; /* Зелёный цвет */
+            color: white;
+            border: none;
+        }
+        .delete-button {
+            background-color: #f44336; /* Красный цвет */
+            color: white;
+            border: none;
+        }
+        .create-button {
+            background-color: #008CBA; /* Синий цвет */
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Email</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${usera}">
+        <td th:text="${user.id}">ID</td>
+        <td th:text="${user.name}">Name</td>
+        <td th:text="${user.surname}">Surname</td>
+        <td th:text="${user.email}">Email</td>
+        <td>
+            <form th:action="@{/user/{id}/edit(id=${user.id})}" method="get">
+                <button type="submit" class="edit-button">Edit</button>
+            </form>
+            <form th:action="@{/user/{id}(id=${user.id})}" th:object="${user}" method="post">
+                <button type="submit" class="delete-button">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br>
+<a href="/user/new" class="create-button">Create New User</a>
+<br>
+
+</body>
+</html>
