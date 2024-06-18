@@ -23,7 +23,7 @@ public class UserDao {
     }
 
 
-    @Transactional
+    @Transactional()
     public List<User> getUsers() {
         String jpql = "SELECT u FROM User u";
         return entityManager.createQuery(jpql, User.class).getResultList();

@@ -2,6 +2,8 @@ package com.example.sprtingcrud.models;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "user")
@@ -12,11 +14,13 @@ public class User {
     int id;
 
     @Column(name="name")
+    @NotBlank(message = "The field cannot be empty")
     private String name;
-
+    @NotBlank(message = "The field cannot be empty")
     @Column(name="surname")
     private String surname;
-
+    @NotBlank(message = "The field is empty or the email format is incorrect")
+    @Email(message = "The field is empty or the email format is incorrect")
     @Column(name="email")
     private String email;
 
